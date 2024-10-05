@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Professor;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ProfessorController extends Controller
 {
@@ -12,7 +13,9 @@ class ProfessorController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Professors/Index', [
+            'professors' => Professor::all(),
+        ]);
     }
 
     /**
