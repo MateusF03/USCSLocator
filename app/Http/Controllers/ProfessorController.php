@@ -23,7 +23,7 @@ class ProfessorController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Professors/Create');
     }
 
     /**
