@@ -31,7 +31,16 @@ class ProfessorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'discipline' => 'required',
+            'time_range' => ['required', 'regex:/^\d{2}:\d{2}-\d{2}:\d{2}$/'],
+            'room' => 'required',
+        ]);
+
+        Professor::create($data);
+        return redirect(route('professors.index'));
     }
 
     /**
