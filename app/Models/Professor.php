@@ -14,7 +14,8 @@ class Professor extends Model
         'name',
         'email',
         'discipline',
-        'time_range'
+        'time_range',
+        'room'
     ];
 
     protected $appends = [

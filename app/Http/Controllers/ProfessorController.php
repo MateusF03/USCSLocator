@@ -48,7 +48,9 @@ class ProfessorController extends Controller
      */
     public function show(Professor $professor)
     {
-        //
+        return Inertia::render('Professors/Show', [
+            'professor' => $professor,
+        ]);
     }
 
     /**
@@ -56,7 +58,9 @@ class ProfessorController extends Controller
      */
     public function edit(Professor $professor)
     {
-        //
+        return Inertia::render('Professors/Edit', [
+            'professor' => $professor,
+        ]);
     }
 
     /**
@@ -64,7 +68,16 @@ class ProfessorController extends Controller
      */
     public function update(Request $request, Professor $professor)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'discipline' => 'required',
+            'time_range' => ['required', 'regex:/^\d{2}:\d{2}-\d{2}:\d{2}$/'],
+            'room' => 'required',
+        ]);
+
+        $professor->update($data);
+        return redirect(route('professors.index'));
     }
 
     /**
@@ -72,6 +85,7 @@ class ProfessorController extends Controller
      */
     public function destroy(Professor $professor)
     {
-        //
+        $professor->delete();
+        return redirect(route('professors.index'));
     }
 }
