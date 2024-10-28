@@ -7,22 +7,24 @@ import { vMaska } from "maska/vue";
 
 import { useForm, Link } from "@inertiajs/vue3";
 
+const props = defineProps(["professor"]);
+
 const form = useForm({
-    name: "",
-    email: "",
-    discipline: "",
-    room: "",
-    time_range: "",
+    name: props.professor.name,
+    email: props.professor.email,
+    discipline: props.professor.discipline,
+    room: props.professor.room,
+    time_range: props.professor.time_range,
 });
 </script>
 
 <template>
-    <DefaultLayout title="Create">
+    <DefaultLayout title="Edit">
         <div class="flex flex-col items-center justify-center h-screen">
-            <h1 class="text-2xl font-semibold mb-4">Cadastrar Professor</h1>
+            <h1 class="text-2xl font-semibold mb-4">Editar Professor</h1>
             <form
                 @submit.prevent="
-                    form.post(route('professors.store'), {
+                    form.put(route('professors.update', professor.id), {
                         onSuccess: () => form.reset(),
                     })
                 "

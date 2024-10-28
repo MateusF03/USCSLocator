@@ -1,5 +1,5 @@
 <script setup>
-import { Head } from "@inertiajs/vue3";
+import { Head, router } from "@inertiajs/vue3";
 defineProps(["title"]);
 </script>
 
@@ -7,10 +7,11 @@ defineProps(["title"]);
     <div class="layout">
         <div class="black-bar">
             <svg
-                class="w-10"
+                class="w-10 cursor-pointer"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                @click="router.visit(route('professors.index'))"
             >
                 <rect width="24" height="24" fill="white" />
                 <path

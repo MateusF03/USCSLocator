@@ -9,8 +9,12 @@ import {
     TableHeader,
     TableRow,
 } from "@/Components/ui/table";
-import { Link } from "@inertiajs/vue3";
+import { Link, router } from "@inertiajs/vue3";
 import { Button } from "@/Components/ui/button";
+
+const showProfessor = (professor) => {
+    router.visit(route("professors.show", professor.id));
+};
 defineProps(["professors"]);
 </script>
 
@@ -27,19 +31,19 @@ defineProps(["professors"]);
                 <TableCaption>Professors</TableCaption>
                 <TableHeader>
                     <TableRow>
-                        <TableHead>Photo</TableHead>
-                        <TableHead>Name</TableHead>
+                        <TableHead>Foto</TableHead>
+                        <TableHead>Nome</TableHead>
                         <TableHead>Email</TableHead>
-                        <TableHead>Discipline</TableHead>
-                        <TableHead>Room</TableHead>
-                        <TableHead>Time Range</TableHead>
+                        <TableHead>Matéria</TableHead>
+                        <TableHead>Sala</TableHead>
+                        <TableHead>Horário</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
                     <TableRow
                         v-for="professor in professors"
                         :key="professor.id"
-                        @click="console.log(professor)"
+                        @click="showProfessor(professor)"
                         class="cursor-pointer"
                     >
                         <TableCell>
